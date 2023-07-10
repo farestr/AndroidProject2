@@ -94,6 +94,39 @@ public class CreateAccountActivity extends AppCompatActivity {
                 finish();
             }
         });
+    // Restore the field values if savedInstanceState is not null
+        if (savedInstanceState != null) {
+            String nameValue = savedInstanceState.getString("nameValue");
+            String emailValue = savedInstanceState.getString("emailValue");
+            String passwordValue = savedInstanceState.getString("passwordValue");
+            String dateOfBirthValue = savedInstanceState.getString("dateOfBirthValue");
+            String genderValue = savedInstanceState.getString("genderValue");
+            String phoneValue = savedInstanceState.getString("phoneValue");
+
+            editTextName.setText(nameValue);
+            editTextEmail.setText(emailValue);
+            editTextPassword.setText(passwordValue);
+            editTextDateOfBirth.setText(dateOfBirthValue);
+            // Set the selected gender in the spinner
+            if (genderValue != null) {
+                int position = adapter.getPosition(genderValue);
+                spinnerGender.setSelection(position);
+            }
+            editTextPhone.setText(phoneValue);
+        }
+    }
+
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("nameValue", editTextName.getText().toString());
+        outState.putString("emailValue", editTextEmail.getText().toString());
+        outState.putString("passwordValue", editTextPassword.getText().toString());
+        outState.putString("dateOfBirthValue", editTextDateOfBirth.getText().toString());
+        outState.putString("genderValue", spinnerGender.getSelectedItem().toString());
+        outState.putString("phoneValue", editTextPhone.getText().toString());
     }
 
     private void showDatePickerDialog() {
