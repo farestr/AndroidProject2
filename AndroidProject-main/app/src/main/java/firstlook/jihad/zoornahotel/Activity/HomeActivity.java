@@ -70,6 +70,16 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+                if (savedInstanceState != null) {
+            imageList = savedInstanceState.getIntegerArrayList("imageList");
+        } else {
+            // Create a new list if savedInstanceState is null
+            imageList = new ArrayList<>();
+            imageList.add(R.drawable.image_1);
+            imageList.add(R.drawable.image_2);
+            imageList.add(R.drawable.image_3);
+            imageList.add(R.drawable.image_4);
+        }
 
         // Initialize RecyclerView and set layout manager
         imageRecyclerView = findViewById(R.id.imageRecyclerView);
